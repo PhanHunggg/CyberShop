@@ -93,9 +93,8 @@ img {
 }
 .header .container .store .footer h4 {
   color: #fff;
-  text-align: right;
+  text-align: end;
   margin-right: 50px;
-  line-height: 130vh;
 }
 .header .container .store .table > :not(caption) > * > * {
   color: #fff;
@@ -103,6 +102,13 @@ img {
 .header .container .store .table #sanPham tr td img {
   width: 80px;
   height: 55px;
+  transform: translate(56px, 0);
+}
+.header .container .store .table #sanPham tr td:last-child button i {
+  font-size: 1.3rem;
+}
+.header .container .store .table #sanPham tr td:last-child button:focus {
+  box-shadow: none !important;
 }
 .header .container .store .table #sanPham tr #buy__amount {
   display: flex;
@@ -183,6 +189,7 @@ img {
   z-index: 10;
   overflow: hidden;
   border-radius: 10px;
+  box-shadow: 6px 3px 12px #e2ebfc, -2px 0px white;
 }
 .products .container .products__list .item .card .imgBox img {
   position: absolute;
@@ -254,9 +261,11 @@ img {
   cursor: pointer;
   opacity: 0.8;
   transition: all 0.5s;
+  box-shadow: 0px 2px 12px #ff5acd, -2px 0px #ff5acd;
 }
 .products .container .products__list .item .card .content .details .actionBtn button:nth-child(2) {
   background: #fff;
+  box-shadow: 6px 3px 12px #e2ebfc, -2px 0px white;
 }
 .products .container .products__list .item .card .content .details .actionBtn button:hover {
   opacity: 1;
