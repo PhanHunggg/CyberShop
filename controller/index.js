@@ -2,6 +2,8 @@
 
 const product = new ProductServices();
 const productList = [];
+let productCard = [];
+let amount = 0;
 
 // lấy dữ liệu API xuống
 const getProduct = () => {
@@ -53,6 +55,7 @@ const renderProduct = (data) => {
 window.onload = () => {
   getProduct();
   getCardLocalStorage();
+  getAmountLocal();
 };
 
 // hàm xuất hiện mảng sp
@@ -60,48 +63,127 @@ document.getElementById("btn-shop").onclick = function () {
   document.querySelector(".store").classList.toggle("content");
 };
 
-let productCard = [];
 const handlerCart = (id) => {
-  let test = document.getElementById("amount").innerHTML;
-  test++;
-  document.getElementById("amount").innerHTML = test;
+  amount = document.getElementById("amount").innerHTML;
+  amount++;
+  document.getElementById("amount").innerHTML = amount;
 
   product.getById(id).then(function (response) {
-    for (var i = 0; i < productList.length; i++) {
-      if (productList[i].id === response.data.id) {
-        productCard.push(productList[i]);
+    let cardItems = {
+      product: {
+        id: response.data.id,
+        price: response.data.price,
+        image: response.data.image,
+        name: response.data.name,
+      },
+      quantity: 1,
+    };
+    console.log(cardItems);
+    console.log(productCard);
+
+    if (productCard.length === 0) {
+      productCard.push(cardItems);
+    } else {
+      for (let i = 0; i < productCard.length; i++) {
+        if (productCard[i].product.id === cardItems.product.id) {
+          productCard[i].quantity += 1;
+          renderCard();
+          setLocalStorage();
+          setAmountLocal();
+          return;
+        }
       }
+      productCard.push(cardItems);
     }
-    renderCard(productCard, "sanPham");
+    renderCard();
     setLocalStorage();
-    // saveData();
+    setAmountLocal();
   });
 };
 
-const renderCard = (data, span) => {
-  var html = data.reduce((total, element) => {
+const renderCard = () => {
+  let html = productCard.reduce((total, element) => {
     total += `
     <tr>
       <td><img
-        src="../images/${element.image}"
+        src="../images/${element.product.image}"
         alt=""
         /></td>
-      <td>${element.name}</td>
+      <td>${element.product.name}</td>
       <td><div id="buy__amount">
-       <button onclick="handleMinus('${element.id}')" class="btn-minus"><i    class="fa-solid fa-minus"></i></button>
-       <input type="text" name="amountProduct" id="amountProduct" value="1">
-        <button onclick="handlePlus('${element.id}')" class="btn-plus"><i class="fa-solid fa-plus"></i></button>
+       <button onclick="handleMinus('${
+         element.product.id
+       }')" class="btn-minus"><i    class="fa-solid fa-minus"></i></button>
+       <input type="text" name="amountProduct" id="amountProduct" value="${
+         element.quantity
+       }">
+        <button onclick="handlePlus('${
+          element.product.id
+        }')" class="btn-plus"><i class="fa-solid fa-plus"></i></button>
       </div></td>
-    <td>${element.price}</td>
+    <td>${element.product.price * element.quantity}</td>
     <td>
-      <button onclick="deleteProduct('${element.id}')" class="btn-delete btn btn-danger"><i class="fa-solid fa-xmark"></i></button>
+      <button onclick="deleteProduct('${
+        element.product.id
+      }')" class="btn-delete btn btn-danger"><i class="fa-solid fa-xmark"></i></button>
     </td>
   </tr>
     `;
     return total;
   }, "");
 
-  document.getElementById(span).innerHTML = html;
+  document.getElementById("sanPham").innerHTML = html;
+};
+
+const handlePlus = (id) => {
+  product.getById(id).then(function (response) {
+    for (let i in productCard) {
+      if (response.data.id === productCard[i].product.id) {
+        productCard[i].quantity += 1;
+        amount = document.getElementById("amount").innerHTML;
+        amount++;
+        document.getElementById("amount").innerHTML = amount;
+        renderCard();
+        setLocalStorage();
+        setAmountLocal();
+      }
+    }
+  });
+};
+
+const handleMinus = (id) => {
+  product.getById(id).then(function (response) {
+    for (let i in productCard) {
+      if (response.data.id === productCard[i].product.id) {
+        if (productCard[i].quantity <= 1) {
+          productCard[i].quantity = 1;
+        } else {
+          productCard[i].quantity -= 1;
+          amount = document.getElementById("amount").innerHTML;
+          amount--;
+          document.getElementById("amount").innerHTML = amount;
+          renderCard();
+          setLocalStorage();
+          setAmountLocal();
+        }
+      }
+    }
+  });
+};
+
+const deleteProduct = (id) => {
+  const inx = productCard.findIndex((element) => {
+    return element.product.id === id;
+  });
+
+  const quantity = productCard[inx].quantity;
+  productCard.splice(inx, 1);
+  amount = document.getElementById("amount").innerHTML;
+  amount -= quantity;
+  document.getElementById("amount").innerHTML = amount;
+  renderCard();
+  setLocalStorage();
+  setAmountLocal();
 };
 
 const setLocalStorage = () => {
@@ -120,60 +202,53 @@ const getLocalStorage = () => {
 const getCardLocalStorage = () => {
   const data = getLocalStorage();
 
-  productCard = data.map((element) => {
-    const product = new Product(
-      element.id,
-      element.name,
-      element.price,
-      element.screen,
-      element.blackCamera,
-      element.fontCamera,
-      element.image,
-      element.desc,
-      element.type,
-      element.amount
-    );
-    return product;
-  });
-  renderCard(productCard, "sanPham");
+  productCard = data;
+
+  renderCard();
+};
+
+const setAmountLocal = () => {
+  localStorage.setItem("amount", amount);
+};
+
+const getAmountLocal = () => {
+  const amount = localStorage.getItem("amount");
+  if (!amount) amount = 0;
+  document.getElementById("amount").innerHTML = amount;
 };
 
 //  Hàm tăng giảm số lượng
-function handlePlus(id) {
-  product.getById(id).then(function (response) {
-    var amount;
-    amount = document.getElementById("amountProduct").value;
-    amount++;
-    console.log(amount);
-    document.getElementById("amountProduct").value = amount;
-  });
-}
-function handleMinus() {
-  var amount = document.getElementById("amountProduct").value;
-  amount--;
-  document.getElementById("amountProduct").value = amount;
-}
+// function handlePlus(id) {
+//   product.getById(id).then(function (response) {
+//     var amount;
+//     amount = document.getElementById("amountProduct").value;
+//     amount++;
+//     console.log(amount);
+//     document.getElementById("amountProduct").value = amount;
+//   });
+// }
+// function handleMinus() {
+//   var amount = document.getElementById("amountProduct").value;
+//   amount--;
+//   document.getElementById("amountProduct").value = amount;
+// }
 
 //  hàm desc
 
-const handleDesc = (id) => {
-  product.getById(id).then(function (response) {
-    for (var i = 0; i < productList.length; i++) {
-      if (productList[i].id === response.data.id) {
-        document.getElementById("exampleModalLabel").innerHTML =
-          productList[i].name;
-        document.querySelector(".modal-body").innerHTML = productList[i].desc;
-      }
-    }
-  });
-}
+// const handleDesc = (id) => {
+//   product.getById(id).then(function (response) {
+//     for (var i = 0; i < productList.length; i++) {
+//       if (productList[i].id === response.data.id) {
+//         document.getElementById("exampleModalLabel").innerHTML =
+//           productList[i].name;
+//         document.querySelector(".modal-body").innerHTML = productList[i].desc;
+//       }
+//     }
+//   });
+// };
 
-
-const deleteProduct = (id) => {
-  const inx = productCard.findIndex((element) => {
-    return element.id === id
-  })
-  productCard.splice(inx, 1);
-  renderCard(productCard, "sanPham");
-  setLocalStorage();
-}
+// for (var i = 0; i < productList.length; i++) {
+//   if (productList[i].id === response.data.id) {
+//     productCard.push(productList[i]);
+//   }
+// }

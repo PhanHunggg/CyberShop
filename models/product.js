@@ -1,4 +1,4 @@
- function Product(
+function Product(
   id,
   name,
   price,
