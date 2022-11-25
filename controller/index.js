@@ -1,20 +1,16 @@
 // tạo mảng lưu đẻ lưu loacal
 
 const product = new ProductServices();
-const productList = [];
 let productCard = [];
 let amount = 0;
+let money = 0;
 
 // lấy dữ liệu API xuống
 const getProduct = () => {
   product.getList().then(function (response) {
     renderProduct(response.data);
-    for (var i = 0; i < response.data.length; i++) {
-      productList.push(response.data[i]);
-    }
   });
 };
-console.log(productList);
 
 // in dữ liệu ra màn hình
 const renderProduct = (data) => {
@@ -51,16 +47,16 @@ const renderProduct = (data) => {
   document.getElementById("items").innerHTML = html;
 };
 
-// Khi window load thì chạy hàm render in ra màn hình
-window.onload = () => {
-  getProduct();
-  getCardLocalStorage();
-  getAmountLocal();
-};
-
 // hàm xuất hiện mảng sp
 document.getElementById("btn-shop").onclick = function () {
   document.querySelector(".store").classList.toggle("content");
+  disabledInput();
+};
+const disabledInput = () => {
+  const quantityInput = document.querySelectorAll(".quantity");
+  for (let i in quantityInput) {
+    quantityInput[i].disabled = true;
+  }
 };
 
 const handlerCart = (id) => {
@@ -78,8 +74,6 @@ const handlerCart = (id) => {
       },
       quantity: 1,
     };
-    console.log(cardItems);
-    console.log(productCard);
 
     if (productCard.length === 0) {
       productCard.push(cardItems);
@@ -90,6 +84,7 @@ const handlerCart = (id) => {
           renderCard();
           setLocalStorage();
           setAmountLocal();
+          setMoney();
           return;
         }
       }
@@ -98,6 +93,7 @@ const handlerCart = (id) => {
     renderCard();
     setLocalStorage();
     setAmountLocal();
+    setMoney();
   });
 };
 
@@ -114,7 +110,7 @@ const renderCard = () => {
        <button onclick="handleMinus('${
          element.product.id
        }')" class="btn-minus"><i    class="fa-solid fa-minus"></i></button>
-       <input type="text" name="amountProduct" id="amountProduct" value="${
+       <input class="quantity" type="text" name="amountProduct" id="amountProduct" value="${
          element.quantity
        }">
         <button onclick="handlePlus('${
@@ -129,10 +125,21 @@ const renderCard = () => {
     </td>
   </tr>
     `;
+
     return total;
   }, "");
-
+  totalCard();
   document.getElementById("sanPham").innerHTML = html;
+};
+
+const totalCard = () => {
+  let total = 0;
+  for (let i in productCard) {
+    total += productCard[i].product.price * productCard[i].quantity;
+  }
+  money = total;
+
+  document.getElementById("total").innerHTML = money;
 };
 
 const handlePlus = (id) => {
@@ -144,8 +151,10 @@ const handlePlus = (id) => {
         amount++;
         document.getElementById("amount").innerHTML = amount;
         renderCard();
+        disabledInput();
         setLocalStorage();
         setAmountLocal();
+        setMoney();
       }
     }
   });
@@ -163,8 +172,10 @@ const handleMinus = (id) => {
           amount--;
           document.getElementById("amount").innerHTML = amount;
           renderCard();
+          disabledInput();
           setLocalStorage();
           setAmountLocal();
+          setMoney();
         }
       }
     }
@@ -177,13 +188,16 @@ const deleteProduct = (id) => {
   });
 
   const quantity = productCard[inx].quantity;
+  const moneyDele = productCard[inx].quantity * productCard[inx].product.price;
   productCard.splice(inx, 1);
+  money -= moneyDele;
   amount = document.getElementById("amount").innerHTML;
   amount -= quantity;
   document.getElementById("amount").innerHTML = amount;
   renderCard();
   setLocalStorage();
   setAmountLocal();
+  setMoney();
 };
 
 const setLocalStorage = () => {
@@ -201,8 +215,9 @@ const getLocalStorage = () => {
 
 const getCardLocalStorage = () => {
   const data = getLocalStorage();
-
-  productCard = data;
+  for (let i in data) {
+    productCard.push(data[i]);
+  }
 
   renderCard();
 };
@@ -217,38 +232,27 @@ const getAmountLocal = () => {
   document.getElementById("amount").innerHTML = amount;
 };
 
-//  Hàm tăng giảm số lượng
-// function handlePlus(id) {
-//   product.getById(id).then(function (response) {
-//     var amount;
-//     amount = document.getElementById("amountProduct").value;
-//     amount++;
-//     console.log(amount);
-//     document.getElementById("amountProduct").value = amount;
-//   });
-// }
-// function handleMinus() {
-//   var amount = document.getElementById("amountProduct").value;
-//   amount--;
-//   document.getElementById("amountProduct").value = amount;
-// }
+const setMoney = () => {
+  localStorage.setItem("money", money);
+};
 
-//  hàm desc
+const getMoney = () => {
+  const moneyLocal = localStorage.getItem("money");
+  if (!moneyLocal) moneyLocal = 0;
+  money = moneyLocal;
+};
 
-// const handleDesc = (id) => {
-//   product.getById(id).then(function (response) {
-//     for (var i = 0; i < productList.length; i++) {
-//       if (productList[i].id === response.data.id) {
-//         document.getElementById("exampleModalLabel").innerHTML =
-//           productList[i].name;
-//         document.querySelector(".modal-body").innerHTML = productList[i].desc;
-//       }
-//     }
-//   });
-// };
+const handleDesc = (id) => {
+  product.getById(id).then(function (response) {
+    document.getElementById("exampleModalLabel").innerHTML = response.data.name;
+    document.querySelector(".modal-body").innerHTML = response.data.desc;
+  });
+};
 
-// for (var i = 0; i < productList.length; i++) {
-//   if (productList[i].id === response.data.id) {
-//     productCard.push(productList[i]);
-//   }
-// }
+// Khi window load thì chạy hàm render in ra màn hình
+window.onload = () => {
+  getProduct();
+  getCardLocalStorage();
+  getAmountLocal();
+  getMoney();
+};

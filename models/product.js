@@ -8,7 +8,6 @@ function Product(
   image,
   desc,
   type,
-  amount
 ) {
   this.id = id;
   this.name = name;
@@ -19,5 +18,4 @@ function Product(
   this.image = image;
   this.desc = desc;
   this.type = type;
-  this.amount = amount;
 }

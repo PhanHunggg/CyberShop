@@ -69,9 +69,6 @@ img {
 .header .container .bg-light .navbar-collapse .nav-link:hover {
   color: rgb(0, 112, 0);
 }
-.header .container .bg-light .navbar-collapse #btn-shop i {
-  z-index: 0;
-}
 .header .container .bg-light .navbar-collapse #btn-shop p {
   position: absolute;
   top: 5px;
