@@ -4,11 +4,28 @@ const product = new ProductServices();
 let productCard = [];
 let amount = 0;
 let money = 0;
+const productServices = new ProductServiceList();
 
 // lấy dữ liệu API xuống
 const getProduct = () => {
   product.getList().then(function (response) {
-    renderProduct(response.data);
+    productServices.productList = response.data.map((element) => {
+      const product = new Product (
+        element.id,
+        element.name,
+        element.price,
+        element.screen,
+        element.blackCamera,
+        element.fontCamera,
+        element.image,
+        element.desc,
+        element.type
+      );
+      return product;
+    });
+    renderProduct(productServices.productList);
+    console.log(productServices.productList)
+
   });
 };
 
