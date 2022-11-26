@@ -273,4 +273,9 @@ img {
 
 .modal.show .modal-dialog {
   transform: translate(0, 50%);
+}
+
+.filter {
+  padding-top: 160px;
+  position: absolute;
 }/*# sourceMappingURL=index.css.map */

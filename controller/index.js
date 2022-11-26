@@ -10,7 +10,7 @@ const productServices = new ProductServiceList();
 const getProduct = () => {
   product.getList().then(function (response) {
     productServices.productList = response.data.map((element) => {
-      const product = new Product (
+      const product = new Product(
         element.id,
         element.name,
         element.price,
@@ -24,8 +24,7 @@ const getProduct = () => {
       return product;
     });
     renderProduct(productServices.productList);
-    console.log(productServices.productList)
-
+    console.log(productServices.productList);
   });
 };
 
@@ -272,4 +271,24 @@ window.onload = () => {
   getCardLocalStorage();
   getAmountLocal();
   getMoney();
+};
+
+document.getElementById("setLoai").onchange = (event) => {
+  const value = event.target.value;
+  const data = filterCardList(value);
+  renderProduct(data);
+};
+
+filterCardList = (type) => {
+  const filterData = productServices.productList.filter((element) => {
+    if (type === "all") {
+      return true;
+    }
+    if (element.type === type) {
+      return true;
+    }
+
+    return false;
+  });
+  return filterData;
 };
