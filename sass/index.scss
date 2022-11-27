@@ -74,6 +74,7 @@
         #sanPham {
           tr {
             td {
+              line-height: 64px;
               img {
                 width: 80px;
                 height: 55px;
@@ -95,7 +96,8 @@
 
             #buy__amount {
               display: flex;
-
+              height: 64px;
+              align-items: center;
               // justify-content: center;
               // transform: translateY(40px);
               button {

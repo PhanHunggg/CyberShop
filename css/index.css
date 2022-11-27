@@ -96,6 +96,9 @@ img {
 .header .container .store .table > :not(caption) > * > * {
   color: #fff;
 }
+.header .container .store .table #sanPham tr td {
+  line-height: 64px;
+}
 .header .container .store .table #sanPham tr td img {
   width: 80px;
   height: 55px;
@@ -109,6 +112,8 @@ img {
 }
 .header .container .store .table #sanPham tr #buy__amount {
   display: flex;
+  height: 64px;
+  align-items: center;
 }
 .header .container .store .table #sanPham tr #buy__amount button {
   width: 20px;
