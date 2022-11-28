@@ -46,7 +46,7 @@ const renderProduct = (data) => {
 <div class="details">
   <h2>${element.name}<br /></h2>
   <div class="data">
-    <h3>${element.screen}<br /><span>Screen</span></h3>
+    <h3>${element.screen} inch<br /><span>Screen</span></h3>
     <h3>${element.price}$<br /><span>Price</span></h3>
   </div>
   <div class="actionBtn">
