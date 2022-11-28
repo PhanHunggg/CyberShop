@@ -33,33 +33,31 @@ const renderProduct = (data) => {
   const html = data.reduce((total, element) => {
     total += `
     <div class=" col-12 col-md-6 col-lg-4">
-    <div class="item">
-<div class="card">
-<div class="lines"></div>
-<div class="imgBox">
-<img
-  src="../images/${element.image}"
-  alt=""
-/>
-</div>
-<div class="content">
-<div class="details">
-  <h2>${element.name}<br /></h2>
-  <div class="data">
-    <h3>${element.screen}<br /><span>Screen</span></h3>
-    <h3>${element.price}$<br /><span>Price</span></h3>
-  </div>
-  <div class="actionBtn">
-    <button onclick="handlerCart(${element.id})" id="add">Add</button>
-    <button onclick="handleDesc(${element.id})" data-bs-toggle="modal" data-bs-target="#exampleModal" >Description</button>
-  </div>
-</div>
-</div>
-</div>
-</div>
-    
-    </div>
-    
+      <div class="item">
+        <div class="card">
+          <div class="lines"></div>
+            <div class="imgBox">
+                <img
+                  src="../images/${element.image}"
+                  alt=""
+                />
+            </div>
+            <div class="content">
+            <div class="details">
+              <h2>${element.name}<br /></h2>
+              <div class="data">
+                <h3>${element.screen}<br /><span>Screen</span></h3>
+                <h3>${element.price}$<br /><span>Price</span></h3>
+              </div>
+              <div class="actionBtn">
+                <button onclick="handlerCart(${element.id})" id="add">Add</button>
+                <button onclick="handleDesc(${element.id})" data-bs-toggle="modal" data-bs-target="#exampleModal" >Description</button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+        </div>
 `;
     return total;
   }, "");
@@ -120,30 +118,35 @@ const handlerCart = (id) => {
 const renderCard = () => {
   let html = productCard.reduce((total, element) => {
     total += `
-    <tr>
-      <td><img
-        src="../images/${element.product.image}"
-        alt=""
-        /></td>
-      <td>${element.product.name}</td>
-      <td><div id="buy__amount">
-       <button onclick="handleMinus('${
-         element.product.id
-       }')" class="btn-minus"><i    class="fa-solid fa-minus"></i></button>
-       <input class="quantity" type="text" name="amountProduct" id="amountProduct" value="${
-         element.quantity
-       }">
-        <button onclick="handlePlus('${
-          element.product.id
-        }')" class="btn-plus"><i class="fa-solid fa-plus"></i></button>
-      </div></td>
-    <td>${element.product.price * element.quantity}</td>
-    <td>
-      <button onclick="deleteProduct('${
-        element.product.id
-      }')" class="btn-delete btn btn-danger"><i class="fa-solid fa-xmark"></i></button>
-    </td>
-  </tr>
+    <div class="sanpham__content">
+      <div class="sanpham__container">
+          <ul>
+            <li class="li__first">
+              <img src="../images/${element.product.image}" alt=""/>
+            </li>
+            <li>${element.product.name}</li>
+            <li>
+              <div id="buy__amount">
+                <button onclick="handleMinus('${
+                  element.product.id
+                }')" class="btn-minus"><i    class="fa-solid fa-minus"></i></button>
+            <input class="quantity" type="text" name="amountProduct" id="amountProduct" value="${
+              element.quantity
+            }">
+                <button onclick="handlePlus('${
+                  element.product.id
+                }')" class="btn-plus"><i class="fa-solid fa-plus"></i></button>
+            </div>
+            </li>
+            <li>${element.product.price * element.quantity}</li>
+            <li>
+              <button onclick="deleteProduct('${
+                element.product.id
+              }')" class="btn-delete btn btn-danger"><i class="fa-solid fa-xmark"></i></button>
+            </li>
+          </ul>
+      </div>
+    </div>
     `;
 
     return total;
@@ -277,20 +280,19 @@ window.onload = () => {
   getMoney();
 };
 
-
-
-
-
 // RESPONSIVE
 
-
 const handleNavbarToggler = () => {
-  if (!(document.getElementById("navbar-toggler").classList.contains("respon__togle"))) {
+  if (
+    !document
+      .getElementById("navbar-toggler")
+      .classList.contains("respon__togle")
+  ) {
     document.getElementById("navbar-toggler").classList.add("respon__togle");
   } else {
     document.getElementById("navbar-toggler").classList.remove("respon__togle");
   }
-}
+};
 
 document.getElementById("setLoai").onchange = (event) => {
   const value = event.target.value;
