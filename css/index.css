@@ -69,7 +69,10 @@ img {
 .header .container .bg-light .navbar-collapse .nav-link:hover {
   color: rgb(0, 112, 0);
 }
-.header .container .bg-light .navbar-collapse #btn-shop p {
+.header .container .bg-light .navbar-collapse #btn-shop.btn-outline-success {
+  border-color: transparent !important;
+}
+.header .container .bg-light .navbar-collapse #btn-shop.btn-outline-success p {
   position: absolute;
   top: 2px;
   right: 2px;
@@ -232,6 +235,17 @@ img {
   right: 53px !important;
 }
 
+.repspon__filter {
+  top: 37px;
+  right: 161px;
+  position: absolute;
+}
+
+@media screen and (max-width: 1280px) {
+  .filter .form-group {
+    padding-left: 82px;
+  }
+}
 @media screen and (max-width: 991.5px) {
   .header .container .bg-light .navbar-toggler {
     position: absolute;
@@ -240,7 +254,7 @@ img {
     transition: all 0.5s;
   }
   .header .container .bg-light .navbar-collapse #btn-shop {
-    top: -47px;
+    top: -35px;
     right: -19px;
     position: absolute;
     z-index: 12;
@@ -251,11 +265,18 @@ img {
   }
   .header .container .store {
     top: 0px;
-    background: rgba(0, 0, 0, 0.9);
     height: 100vh;
   }
   .header .container .store .body .table {
-    margin-top: 56px;
+    margin-top: 86px;
+  }
+  .filter .form-group {
+    padding-left: 56px;
+  }
+}
+@media screen and (max-width: 1280px) {
+  .header .container .bg-light .navbar-toggler {
+    right: 5;
   }
 }
 .footer {
@@ -294,6 +315,7 @@ img {
 }
 .footer .footer__container .footer__bottom h3 {
   color: #fff;
+  margin-bottom: 20px;
 }
 .footer .footer__copyright {
   background-color: #1f343b;
@@ -346,25 +368,27 @@ img {
   padding-top: 6px;
 }
 .store .footer button {
-  padding: 13px 36px;
+  padding: 9px 20px;
   margin: 0 22px 0 15px;
-  text-transform: capitalize;
-  height: 2.5rem;
   line-height: 0.5rem;
   box-sizing: border-box;
-  font-size: 0.875rem;
-  border-radius: 2px;
-  width: 10rem;
-  background-image: linear-gradient(to right, #f55f8d 0, #f8ae56 51%, #f55f8d 100%);
+  border-radius: 8px;
   border: none;
   transition: all 0.5s;
-  background-size: 200%;
+  background-color: #96bfcc;
+  transition: all 0.5s;
+  opacity: 0.7;
+}
+.store .footer button i {
+  color: green;
+  font-size: 22px;
 }
 .store .footer button:hover {
-  background-position: right center;
+  opacity: 1;
 }
 .store .table > :not(caption) > * > * {
   color: #000;
+  padding: 0.5rem 1.5rem;
 }
 .store .table .header__table {
   background-color: #fff;
@@ -389,6 +413,9 @@ img {
 }
 .store .table .header__table li:nth-child(5) {
   margin-right: 32px;
+}
+.store .table #sanPham .sanpham__content .sanpham__container ul {
+  align-items: center;
 }
 .store .table #sanPham {
   border: none;

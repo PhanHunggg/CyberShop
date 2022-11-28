@@ -279,6 +279,32 @@ const handleDesc = (id) => {
   });
 };
 
+// FILLTER
+filterCardList = (type) => {
+  const filterData = productServices.productList.filter((element) => {
+    if (type === "all") {
+      return true;
+    }
+    if (element.type === type) {
+      return true;
+    }
+
+    return false;
+  });
+  return filterData;
+};
+
+const handlePayment =() =>{
+  productCard = [];
+  amount= 0;
+  document.getElementById("amount").innerHTML = amount;
+  money =0;
+  renderCard();
+  setLocalStorage();
+  setAmountLocal();
+  setMoney();
+}
+
 // Khi window load thì chạy hàm render in ra màn hình
 window.onload = () => {
   getProduct();
@@ -299,6 +325,16 @@ const handleNavbarToggler = () => {
   } else {
     document.getElementById("navbar-toggler").classList.remove("respon__togle");
   }
+
+  if (
+    !document
+      .getElementById("filter")
+      .classList.contains("repspon__filter")
+  ) {
+    document.getElementById("filter").classList.add("repspon__filter");
+  } else {
+    document.getElementById("filter").classList.remove("repspon__filter");
+  }
 };
 
 document.getElementById("setLoai").onchange = (event) => {
@@ -307,16 +343,4 @@ document.getElementById("setLoai").onchange = (event) => {
   renderProduct(data);
 };
 
-filterCardList = (type) => {
-  const filterData = productServices.productList.filter((element) => {
-    if (type === "all") {
-      return true;
-    }
-    if (element.type === type) {
-      return true;
-    }
 
-    return false;
-  });
-  return filterData;
-};
