@@ -73,7 +73,11 @@
                     </ul>
                   </li>
                 </ul>
-                <button id="btn-shop" class="ms-4 btn btn-outline-success" type="button">
+                <button
+                  id="btn-shop"
+                  class="ms-4 btn btn-outline-success"
+                  type="button"
+                >
                   <i class="fa-solid fa-cart-shopping"></i>
                   <p id="amount" class="amount">0</p>
                 </button>
@@ -92,45 +96,63 @@
                     <th scope="col"></th>
                   </tr>
                 </thead>
-                <tbody id="sanPham">
-              </tbody>
+                <tbody id="sanPham"></tbody>
               </table>
-             </div>
-             <div class="footer">
+            </div>
+            <div class="footer">
               <h4>Total: <span id="total"></span>$</h4>
-             </div>
+            </div>
           </div>
         </div>
       </div>
     </header>
+    <div class="col-4 filter">
+      <div class="form-group row">
+        <label for="selLoai" class="col-sm-2 col-form-label">Show</label>
+        <div class="col-sm-10">
+          <select class="custom-select" id="setLoai">
+            <option selected>Chọn loại</option>
+            <option value="all">Tất cả</option>
+            <option value="Iphone">Iphone</option>
+            <option value="Samsung">Samsung</option>
+          </select>
+        </div>
+      </div>
+    </div>
     <section class="products">
       <div class="container">
         <h2 class="title">-Products-</h2>
-        <div
-          id="items"
-          class="products__list row"
-        >
+        <div id="items" class="products__list row"></div>
       </div>
     </section>
 
-<!-- Modal -->
-<div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-  <div class="modal-dialog">
-    <div class="modal-content">
-      <div class="modal-header">
-        <h5 class="modal-title" id="exampleModalLabel">Modal title</h5>
-        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-      </div>
-      <div class="modal-body">
-        ...
-      </div>
-      <!-- <div class="modal-footer">
+    <!-- Modal -->
+    <div
+      class="modal fade"
+      id="exampleModal"
+      tabindex="-1"
+      aria-labelledby="exampleModalLabel"
+      aria-hidden="true"
+    >
+      <div class="modal-dialog">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title" id="exampleModalLabel">Modal title</h5>
+            <button
+              type="button"
+              class="btn-close"
+              data-bs-dismiss="modal"
+              aria-label="Close"
+            ></button>
+          </div>
+          <div class="modal-body">...</div>
+          <!-- <div class="modal-footer">
         <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
         <button type="button" class="btn btn-primary">Save changes</button>
       </div> -->
+        </div>
+      </div>
     </div>
-  </div>
-</div>
 
     <!-- BOOTSTRAP JS  -->
     <script

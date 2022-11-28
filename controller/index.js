@@ -292,22 +292,22 @@ const handleNavbarToggler = () => {
   }
 }
 
-// document.getElementById("setLoai").onchange = (event) => {
-//   const value = event.target.value;
-//   const data = filterCardList(value);
-//   renderProduct(data);
-// };
+document.getElementById("setLoai").onchange = (event) => {
+  const value = event.target.value;
+  const data = filterCardList(value);
+  renderProduct(data);
+};
 
-// filterCardList = (type) => {
-//   const filterData = productServices.productList.filter((element) => {
-//     if (type === "all") {
-//       return true;
-//     }
-//     if (element.type === type) {
-//       return true;
-//     }
+filterCardList = (type) => {
+  const filterData = productServices.productList.filter((element) => {
+    if (type === "all") {
+      return true;
+    }
+    if (element.type === type) {
+      return true;
+    }
 
-//     return false;
-//   });
-//   return filterData;
-// };
+    return false;
+  });
+  return filterData;
+};
