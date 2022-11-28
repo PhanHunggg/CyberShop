@@ -21,15 +21,15 @@
   
   @mixin Responsive($breakPoint) {
     @if $breakPoint == MD {
-      @media screen and (min-width: $MD) {
+      @media screen and (max-width: $MD) {
         @content;
       }
     } @else if $breakPoint == LG {
-      @media screen and (min-width: $LG) {
+      @media screen and (max-width: $LG) {
         @content;
       }
     } @else if $breakPoint == XL {
-      @media screen and (min-width: $XL) {
+      @media screen and (max-width: $XL) {
         @content;
       }
     }

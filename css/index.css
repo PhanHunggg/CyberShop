@@ -71,8 +71,8 @@ img {
 }
 .header .container .bg-light .navbar-collapse #btn-shop p {
   position: absolute;
-  top: 5px;
-  right: 5px;
+  top: 2px;
+  right: 2px;
   z-index: 1;
   font-weight: bold;
   font-size: 14px;
@@ -149,10 +149,6 @@ img {
   text-align: center;
   color: #fff;
   margin-bottom: 100px;
-}
-.products .container .products__list {
-  display: grid;
-  grid-template-columns: repeat(3, 1fr);
 }
 .products .container .products__list .item {
   display: flex;
@@ -283,4 +279,35 @@ img {
 .filter {
   padding-top: 160px;
   position: absolute;
+}
+
+.respon__togle {
+  right: 53px !important;
+}
+
+@media screen and (max-width: 991.5px) {
+  .header .container .bg-light .navbar-toggler {
+    position: absolute;
+    top: 33px;
+    right: -8px;
+    transition: all 0.5s;
+  }
+  .header .container .bg-light .navbar-collapse #btn-shop {
+    top: -47px;
+    right: -19px;
+    position: absolute;
+    z-index: 12;
+  }
+  .header .container .bg-light .navbar-collapse #btn-shop p {
+    top: -3px;
+    right: 0px;
+  }
+  .header .container .store {
+    top: 0px;
+    background: rgba(0, 0, 0, 0.9);
+    height: 100vh;
+  }
+  .header .container .store .body .table {
+    margin-top: 56px;
+  }
 }/*# sourceMappingURL=index.css.map */

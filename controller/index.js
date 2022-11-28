@@ -32,6 +32,7 @@ const getProduct = () => {
 const renderProduct = (data) => {
   const html = data.reduce((total, element) => {
     total += `
+    <div class=" col-12 col-md-6 col-lg-4">
     <div class="item">
 <div class="card">
 <div class="lines"></div>
@@ -56,6 +57,9 @@ const renderProduct = (data) => {
 </div>
 </div>
 </div>
+    
+    </div>
+    
 `;
     return total;
   }, "");
@@ -273,22 +277,37 @@ window.onload = () => {
   getMoney();
 };
 
-document.getElementById("setLoai").onchange = (event) => {
-  const value = event.target.value;
-  const data = filterCardList(value);
-  renderProduct(data);
-};
 
-filterCardList = (type) => {
-  const filterData = productServices.productList.filter((element) => {
-    if (type === "all") {
-      return true;
-    }
-    if (element.type === type) {
-      return true;
-    }
 
-    return false;
-  });
-  return filterData;
-};
+
+
+// RESPONSIVE
+
+
+const handleNavbarToggler = () => {
+  if (!(document.getElementById("navbar-toggler").classList.contains("respon__togle"))) {
+    document.getElementById("navbar-toggler").classList.add("respon__togle");
+  } else {
+    document.getElementById("navbar-toggler").classList.remove("respon__togle");
+  }
+}
+
+// document.getElementById("setLoai").onchange = (event) => {
+//   const value = event.target.value;
+//   const data = filterCardList(value);
+//   renderProduct(data);
+// };
+
+// filterCardList = (type) => {
+//   const filterData = productServices.productList.filter((element) => {
+//     if (type === "all") {
+//       return true;
+//     }
+//     if (element.type === type) {
+//       return true;
+//     }
+
+//     return false;
+//   });
+//   return filterData;
+// };

@@ -1,6 +1,7 @@
 @import "base";
 @import "reset";
 @import "variables";
+@import "minxin";
 
 .header {
   position: fixed;
@@ -36,8 +37,8 @@
         #btn-shop {
           p {
             position: absolute;
-            top: 5px;
-            right: 5px;
+            top: 2px;
+            right: 2px;
             z-index: 1;
             font-weight: bold;
             font-size: 14px;
@@ -66,7 +67,7 @@
         }
       }
 
-      .table> :not(caption)>*>* {
+      .table > :not(caption) > * > * {
         color: $c1-0;
       }
 
@@ -149,8 +150,6 @@
     }
 
     .products__list {
-      display: grid;
-      grid-template-columns: repeat(3, 1fr);
 
       .item {
         display: flex;
@@ -347,24 +346,51 @@
   }
 }
 
-// @keyframes animate {
-//   0% {
-//     transform: translate(-50%, -50%) rotate(0deg);
-//   }
-//   100% {
-//     transform: translate(-50%, -50%) rotate(360deg);
-//   }
-// }
-
-// @keyframes animate2 {
-//   0% {
-//     transform: translate(-50%, -50%) rotate(360deg);
-//   }
-//   100% {
-//     transform: translate(-50%, -50%) rotate(0deg);
-//   }
-// }
 .filter {
   padding-top: 160px;
   position: absolute;
+}
+
+// =========================================================================
+
+// RESPONSIVE
+
+.respon__togle{
+  right: 53px !important;
+}
+@include Responsive(LG) {
+  .header {
+    .container {
+      .bg-light {
+        .navbar-toggler {
+          position: absolute;
+          top: 33px;
+          right: -8px;
+          transition: all 0.5s;
+        }
+        .navbar-collapse {
+          #btn-shop {
+            top: -47px;
+            right: -19px;
+            position: absolute;
+            z-index: 12;
+            p {
+              top: -3px;
+              right: 0px;
+            }
+          }
+        }
+      }
+      .store{
+        top: 0px;
+        background: rgba(0, 0, 0, 0.9);
+        height: 100vh;
+        .body{
+          .table{
+            margin-top: 56px;
+          }
+        }
+      }
+    }
+  }
 }
