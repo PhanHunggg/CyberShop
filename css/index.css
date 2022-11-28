@@ -50,7 +50,7 @@ img {
 }
 .header .container .bg-light {
   background-color: transparent !important;
-  padding: 25px 0;
+  padding: 15px 0;
 }
 .header .container .bg-light .navbar-brand {
   font-weight: bold;
@@ -76,68 +76,6 @@ img {
   z-index: 1;
   font-weight: bold;
   font-size: 14px;
-}
-.header .container .store {
-  background: rgba(0, 0, 0, 0.8);
-  position: absolute;
-  height: 150vh;
-  width: 100%;
-  right: 0;
-  top: 105;
-  z-index: 11;
-  transition: all 0.5s;
-  transform: translateX(1600px);
-}
-.header .container .store .footer h4 {
-  color: #fff;
-  text-align: end;
-  margin-right: 50px;
-}
-.header .container .store .table > :not(caption) > * > * {
-  color: #fff;
-}
-.header .container .store .table #sanPham tr td {
-  line-height: 64px;
-}
-.header .container .store .table #sanPham tr td img {
-  width: 80px;
-  height: 55px;
-  transform: translate(56px, 0);
-}
-.header .container .store .table #sanPham tr td:last-child button i {
-  font-size: 1.3rem;
-}
-.header .container .store .table #sanPham tr td:last-child button:focus {
-  box-shadow: none !important;
-}
-.header .container .store .table #sanPham tr #buy__amount {
-  display: flex;
-  height: 64px;
-  align-items: center;
-}
-.header .container .store .table #sanPham tr #buy__amount button {
-  width: 20px;
-  height: 20px;
-  outline: none;
-  position: relative;
-  background: none;
-  border: 1px solid #ececec;
-  cursor: pointer;
-}
-.header .container .store .table #sanPham tr #buy__amount button:hover {
-  background-color: #ececec;
-}
-.header .container .store .table #sanPham tr #buy__amount button i {
-  font-size: 13px;
-  position: absolute;
-  top: 2px;
-  left: 3px;
-  color: #fff;
-}
-.header .container .store .table #sanPham tr #buy__amount input {
-  height: 20px;
-  width: 40px;
-  text-align: center;
 }
 
 .products {
@@ -276,9 +214,18 @@ img {
   transform: translate(0, 50%);
 }
 
-.filter {
-  padding-top: 160px;
-  position: absolute;
+.filter .form-group {
+  padding-left: 175px;
+}
+.filter .form-group .custom-select {
+  border: none;
+  border-radius: 5px;
+  padding: 2px 2px 5px 2px;
+  cursor: pointer;
+  transition: all 0.3s;
+}
+.filter .form-group .custom-select:hover {
+  background-color: #f5f5f5;
 }
 
 .respon__togle {
@@ -310,4 +257,203 @@ img {
   .header .container .store .body .table {
     margin-top: 56px;
   }
+}
+.footer {
+  background-color: #0e1b1f;
+}
+.footer .footer__container .footer__bottom {
+  display: flex;
+  padding: 20px 0;
+  justify-content: space-between;
+}
+.footer .footer__container .footer__bottom .footer__contact {
+  padding-top: 15px;
+}
+.footer .footer__container .footer__bottom ul {
+  list-style: none;
+  padding: 5px;
+}
+.footer .footer__container .footer__bottom ul li {
+  display: flex;
+}
+.footer .footer__container .footer__bottom ul li p {
+  color: #fff;
+}
+.footer .footer__container .footer__bottom ul li i {
+  border-radius: 50%;
+  border: 1px solid transparent;
+  background-image: linear-gradient(to right, #f55f8d 0, #f8ae56 51%, #f55f8d 100%);
+  background-size: 200%;
+  background-color: #fff;
+  margin-right: 10px;
+  width: 40px;
+  height: 40px;
+  line-height: 40px;
+  text-align: center;
+  color: #fff;
+}
+.footer .footer__container .footer__bottom h3 {
+  color: #fff;
+}
+.footer .footer__copyright {
+  background-color: #1f343b;
+  padding: 10px 0;
+}
+.footer .footer__copyright .footer__content {
+  display: flex;
+  justify-content: space-between;
+}
+.footer .footer__copyright .footer__content .footer__left p {
+  color: #fff;
+}
+.footer .footer__copyright .footer__content .footer__left p span {
+  color: #f55f8d;
+}
+.footer .footer__copyright .footer__content .footer__right i {
+  width: 35px;
+  height: 35px;
+  line-height: 35px;
+  text-align: center;
+  border: 1px solid transparent;
+  border-radius: 50%;
+  background-color: rgba(255, 255, 255, 0.1);
+  font-size: 20px;
+  transition: all 0.5s;
+  color: white;
+  transition: all 0.3s;
+}
+
+.store {
+  position: absolute;
+  height: 150vh;
+  width: 100%;
+  right: 0;
+  z-index: 11;
+  transition: all 0.5s;
+  transform: translateX(1600px);
+  background-color: #f5f5f5;
+}
+.store .footer {
+  background-color: #fff;
+  display: flex;
+  justify-content: end;
+  height: 60px;
+  align-items: center;
+}
+.store .footer h4 {
+  padding-top: 6px;
+}
+.store .footer button {
+  padding: 13px 36px;
+  margin: 0 22px 0 15px;
+  text-transform: capitalize;
+  height: 2.5rem;
+  line-height: 0.5rem;
+  box-sizing: border-box;
+  font-size: 0.875rem;
+  border-radius: 2px;
+  width: 10rem;
+  background-image: linear-gradient(to right, #f55f8d 0, #f8ae56 51%, #f55f8d 100%);
+  border: none;
+  transition: all 0.5s;
+  background-size: 200%;
+}
+.store .footer button:hover {
+  background-position: right center;
+}
+.store .table > :not(caption) > * > * {
+  color: #000;
+}
+.store .table .header__table {
+  background-color: #fff;
+  border: 1px solid rgba(0, 0, 0, 0.09);
+  margin-bottom: 10px;
+}
+.store .table .header__table ul {
+  list-style: none;
+  border-color: white;
+  list-style: none;
+  justify-content: space-between;
+  display: flex;
+  padding: 0;
+}
+.store .table .header__table li {
+  display: inline-block;
+  padding: 20px 0px 0px;
+  display: inline-block;
+}
+.store .table .header__table li:first-child {
+  margin-right: 85px;
+}
+.store .table .header__table li:nth-child(5) {
+  margin-right: 32px;
+}
+.store .table #sanPham {
+  border: none;
+}
+.store .table #sanPham .sanpham__content {
+  margin-bottom: 20px;
+  background-color: #fff;
+  border: 1px solid rgba(0, 0, 0, 0.09);
+}
+.store .table #sanPham ul {
+  list-style: none;
+  border-color: white;
+  list-style: none;
+  justify-content: space-between;
+  display: flex;
+  padding: 0;
+}
+.store .table #sanPham ul li {
+  display: inline-block;
+  padding: 20px 0px 0px;
+}
+.store .table #sanPham ul li p {
+  padding-top: 12px;
+}
+.store .table #sanPham ul img {
+  width: 80px;
+  height: 55px;
+  transform: translate(56px, 0);
+  margin-top: 15px;
+}
+.store .table #sanPham ul:last-child button i {
+  font-size: 1.3rem;
+}
+.store .table #sanPham ul:last-child button:focus {
+  box-shadow: none !important;
+}
+.store .table #sanPham ul .li__first {
+  padding: 4px 0px 15px;
+}
+.store .table #sanPham ul #buy__amount {
+  display: flex;
+  padding-top: 15px;
+}
+.store .table #sanPham ul #buy__amount input {
+  border: 1px solid rgba(0, 0, 0, 0.09);
+}
+.store .table #sanPham ul #buy__amount button {
+  width: 20px;
+  height: 20px;
+  outline: none;
+  position: relative;
+  background: none;
+  cursor: pointer;
+  border: 1px solid rgba(0, 0, 0, 0.09);
+}
+.store .table #sanPham ul #buy__amount button:hover {
+  background-color: #ececec;
+}
+.store .table #sanPham ul #buy__amount button i {
+  font-size: 13px;
+  position: absolute;
+  top: 2px;
+  left: 3px;
+  color: #000;
+}
+.store .table #sanPham ul #buy__amount input {
+  height: 20px;
+  width: 40px;
+  text-align: center;
 }/*# sourceMappingURL=index.css.map */
