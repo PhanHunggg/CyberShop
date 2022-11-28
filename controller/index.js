@@ -33,7 +33,6 @@ const renderProduct = (data) => {
   const html = data.reduce((total, element) => {
     total += `
     <div class=" col-12 col-md-6 col-lg-4">
-<<<<<<< HEAD
     <div class="item">
 <div class="card">
 <div class="lines"></div>
@@ -61,33 +60,6 @@ const renderProduct = (data) => {
     
     </div>
     
-=======
-      <div class="item">
-        <div class="card">
-          <div class="lines"></div>
-            <div class="imgBox">
-                <img
-                  src="../images/${element.image}"
-                  alt=""
-                />
-            </div>
-            <div class="content">
-            <div class="details">
-              <h2>${element.name}<br /></h2>
-              <div class="data">
-                <h3>${element.screen}<br /><span>Screen</span></h3>
-                <h3>${element.price}$<br /><span>Price</span></h3>
-              </div>
-              <div class="actionBtn">
-                <button onclick="handlerCart(${element.id})" id="add">Add</button>
-                <button onclick="handleDesc(${element.id})" data-bs-toggle="modal" data-bs-target="#exampleModal" >Description</button>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-        </div>
->>>>>>> 5a70e886c32d01e7d6d65e4243995bef02a9ea0a
 `;
     return total;
   }, "");
@@ -98,6 +70,11 @@ const renderProduct = (data) => {
 // hàm xuất hiện mảng sp
 document.getElementById("btn-shop").onclick = function () {
   document.querySelector(".store").classList.toggle("content");
+  let test = document.querySelector(".store");
+  if(test.classList.contains("content")){
+    document.querySelector("body").style.overflow = "visible"
+  }
+
   disabledInput();
 };
 const disabledInput = () => {

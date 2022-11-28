@@ -511,13 +511,14 @@
 .store {
   // background: rgba(0, 0, 0, 0.8);
   position: absolute;
-  height: 150vh;
+  height: 90vh;
   width: 100%;
   right: 0;
   z-index: 11;
   transition: all 0.5s;
   transform: translateX(1600px);
   background-color: $c1-11;
+  overflow-y: scroll;
 
   // transform: translateX(1600px);
   .footer {
@@ -526,6 +527,7 @@
     justify-content: end;
     height: 60px;
     align-items: center;
+    margin-bottom: 60px;
 
     h4 {
       padding-top: 6px;
