@@ -36,6 +36,7 @@
 
         #btn-shop.btn-outline-success {
           border-color: transparent !important;
+
           p {
             position: absolute;
             top: 2px;
@@ -139,6 +140,67 @@
   }
 }
 
+
+
+
+.carousel {
+  padding: 160px 0 0 0;
+  background-color: #1f343b;
+  height: 850px;
+
+  .carousel-inner {
+    .carousel-item {
+      display: flex;
+      height: 100vh;
+
+      .title,
+      .img {
+        height: 100%;
+        width: 50%;
+
+
+      }
+
+      .title {
+        padding-right: 200px;
+        margin-left: 50px;
+        margin-top: 160px;
+        // display: flex;
+        // flex-direction: column;
+        // justify-content: center;
+
+        h2 {
+          color: white;
+        }
+
+        h3 {
+          color: white;
+        }
+
+        p {
+          color: $c1-13;
+        }
+
+        .btn-infor {
+          @include Button(15, 18px, $c1-13);
+        }
+
+        .btn-shop {
+          @include Button(17, 18px, white);
+          background-color: $c1-14;
+          border: 2px solid $c1-14;
+        }
+      }
+
+      // .img {
+      //   img {
+      //     width: 100%;
+      //   }
+      // }
+    }
+  }
+}
+
 .store {
   // background: rgba(0, 0, 0, 0.8);
   position: absolute;
@@ -175,17 +237,19 @@
       background-color: #96bfcc;
       transition: all 0.5s;
       opacity: 0.7;
+
       i {
         color: green;
         font-size: 22px;
       }
+
       &:hover {
         opacity: 1;
       }
     }
   }
 
-  .table > :not(caption) > * > * {
+  .table> :not(caption)>*>* {
     color: $c1-10;
     padding: 0.5rem 1.5rem;
   }
@@ -220,6 +284,7 @@
         }
       }
     }
+
     #sanPham {
       .sanpham__content {
         .sanpham__container {
@@ -555,12 +620,14 @@
       &:hover {
         background-color: $c1-11;
       }
+
       option {
         font-weight: 500;
       }
     }
   }
 }
+
 
 
 
@@ -591,12 +658,10 @@
           i {
             border-radius: 50%;
             border: 1px solid transparent;
-            background-image: linear-gradient(
-              to right,
-              #f55f8d 0,
-              #f8ae56 51%,
-              #f55f8d 100%
-            );
+            background-image: linear-gradient(to right,
+                #f55f8d 0,
+                #f8ae56 51%,
+                #f55f8d 100%);
             background-size: 200%;
             background-color: $c1-0;
             margin-right: 10px;
@@ -666,6 +731,7 @@
 .respon__togle {
   right: 53px !important;
 }
+
 .repspon__filter {
   top: 37px;
   right: 161px;
@@ -677,6 +743,7 @@
     right: 307px;
   }
 }
+
 @include Responsive(LG) {
   .header {
     .container {
@@ -706,6 +773,7 @@
       .store {
         top: 0px;
         height: 100vh;
+
         .body {
           .table {
             margin-top: 86px;
@@ -714,6 +782,7 @@
       }
     }
   }
+
   .filter .form-group {
     right: 122px;
     top: -34px;
@@ -731,5 +800,3 @@
     }
   }
 }
-
-

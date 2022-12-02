@@ -1,37 +1,48 @@
 // mixins: text, input, button
 @mixin text($s, $w, $c, $hc: $c) {
-    font-size: $s;
-    font-weight: $w;
-    color: $c;
-  
-    &:hover {
-      color: $hc;
+  font-size: $s;
+  font-weight: $w;
+  color: $c;
+
+  &:hover {
+    color: $hc;
+  }
+}
+
+@mixin button($basePadding, $fs, $color) {
+  padding: $basePadding * 1px $basePadding * 3px;
+  font-size: $fs;
+  border-radius: 8px;
+  color: $color;
+}
+
+@mixin boxshadow($base) {
+  box-shadow: $base * 1px $base * 1px $base * 2px $c1-2, -$base * 1px -$base * 1px $base * 2px $c1-0;
+}
+
+@mixin Responsive($breakPoint) {
+  @if $breakPoint ==MD {
+    @media screen and (max-width: $MD) {
+      @content;
     }
   }
-  @mixin button($basePadding, $fs, $color) {
-    padding: $basePadding * 1px $basePadding * 3px;
-    font-size: $fs;
-    border-radius: 8px;
-    color: $color;
-  }
-  
-  @mixin boxshadow($base) {
-    box-shadow: $base * 1px $base * 1px $base * 2px $c1-2, -$base * 1px -$base * 1px $base * 2px $c1-0;
-  }
-  
-  @mixin Responsive($breakPoint) {
-    @if $breakPoint == MD {
-      @media screen and (max-width: $MD) {
-        @content;
-      }
-    } @else if $breakPoint == LG {
-      @media screen and (max-width: $LG) {
-        @content;
-      }
-    } @else if $breakPoint == XL {
-      @media screen and (max-width: $XL) {
-        @content;
-      }
+
+  @else if $breakPoint ==LG {
+    @media screen and (max-width: $LG) {
+      @content;
     }
   }
-  
+
+  @else if $breakPoint ==XL {
+    @media screen and (max-width: $XL) {
+      @content;
+    }
+  }
+}
+
+@mixin Button($basePadding, $fs, $color) {
+  padding: $basePadding * 1px $basePadding * 3px;
+  font-size: $fs;
+  border-radius: 8px;
+  color: $color;
+}

@@ -4,7 +4,7 @@
     <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <link rel="icon" href="./images/icon-shop.jpg">
+    <link rel="icon" href="./images/icon-shop.jpg" />
     <title>CyberShop</title>
 
     <!-- FONT AWESOME -->
@@ -25,7 +25,7 @@
     />
 
     <!-- MAIN CSS  -->
-    <link rel="stylesheet" href="../css/index.css" />
+    <link rel="stylesheet" href="./css/index.css" />
   </head>
   <body>
     <header>
@@ -107,9 +107,35 @@
               </button>
             </div>
           </div>
-        </div>     
+        </div>
       </div>
     </header>
+
+    <div
+      id="carouselExampleCaptions"
+      class="carousel slide"
+      data-ride="carousel"
+    >
+      <div class="carousel-inner container">
+        <div class="carousel-item active">
+          <div class="title space-y-5 pl-10">
+            <h2 class="text-5xl font-bold">IPhone and SamSung</h2>
+            <h3 class="text-xl font-semibold">Best Smartphone of 2022!</h3>
+            <p>
+              Cras tortor mi, lobortis quis ornare in, varius scelerisque urna.
+              Vivamus imperdiet dolor nec odio convallis consequat.
+            </p>
+            <div>
+              <button class="btn-infor">More infor</button>
+              <button class="btn-shop">Shop</button>
+            </div>
+          </div>
+          <div class="img">
+            <img src="./images/product2.png" class="d-block w-100" alt="..." />
+          </div>
+        </div>
+      </div>
+    </div>
 
     <section class="products">
       <div class="container">
@@ -290,10 +316,10 @@
 
     <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
 
-    <script src="../models/product.js"></script>
+    <script src="./models/product.js"></script>
 
-    <script src="../services/product.js"></script>
-    <script src="../services/productServices.js"></script>
-    <script src="../controller/index.js"></script>
+    <script src="./services/product.js"></script>
+    <script src="./services/productServices.js"></script>
+    <script src="./controller/index.js"></script>
   </body>
 </html>
