@@ -3,6 +3,10 @@
 @import "variables";
 @import "minxin";
 
+html {
+  scroll-behavior: smooth;
+}
+
 .header {
   position: fixed;
   width: 100%;
@@ -139,9 +143,6 @@
     // }
   }
 }
-
-
-
 
 .carousel {
   padding: 160px 0 0 0;
